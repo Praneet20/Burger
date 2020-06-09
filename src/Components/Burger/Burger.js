@@ -7,12 +7,21 @@ const Burger = (props) => {
         //  name:'raman',
         //  rollNum:'2345'
     // }
-    const transformedIngredients = Object.keys(props.ingredients)//['name','rollNum']
+    console.log('kkkk',props.ingredients)
+   let transformedIngredients = Object.keys(props.ingredients)//['name','rollNum']
         .map(igkey => {//igKey = 'salad'
             return [...Array(props.ingredients[igkey])].map((_,i) => {
                 return  <BurgerIngredient key={igkey + i} type={igkey} />
             });
-        });
+        })
+        .reduce((arr,el) => {
+            return arr.concat(el)
+        },[]);
+        console.log(transformedIngredients);
+      
+        if(transformedIngredients.length===0){
+            transformedIngredients=<p>Start adding ingrdients!</p>
+        }
 
     return (
         <div className="Burger">
